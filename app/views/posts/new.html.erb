@@ -1,0 +1,30 @@
+<div class="post_form">
+    <%= form_with model:@post do |f| %>
+        <div class="form">
+            <%= f.label :"場所の名前" %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="form">
+            <%= f.label :"住所または地名" %>
+            <%= f.text_field :address %>
+        </div>
+        <div class="form">
+            <%= f.label :"都道府県 （〜県まで記入）" %>
+            <%= f.text_field :place %>
+        </div>
+        <div class="form">
+            <%= f.label :"写真" %>
+            <%= f.file_field :image %>
+        </div>
+        <div class="form">
+            <%= f.label :"スポットのURL" %>
+            <%= f.text_field :rink %>
+        </div>
+        <div class="form">
+            <%= f.label :"ここに関して一言！" %>
+            <%= f.text_area :content %>
+        </div>
+    
+        <%= f.submit "投稿する" %>
+    <% end %>
+</div>

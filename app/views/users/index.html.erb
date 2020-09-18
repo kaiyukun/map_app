@@ -1,0 +1,12 @@
+<% @users.each do |u| %>
+    <div class="user_box">
+        <%= u.username %>
+    </div>
+    <div class="user_box">
+        <%= image_tag u.image_url, size: "250x200" if u.image? %>
+    </div>
+    <div class="user_box">
+        <%= u.profile %>
+    </div>
+    <%= link_to '詳細へ', user_path(u.id) %>
+<% end %>

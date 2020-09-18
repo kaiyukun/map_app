@@ -1,0 +1,39 @@
+<p><%= @post.name %></p>
+<p>投稿者：<%= @post.user.username %></p>
+<div class="show_first">
+    <div id='show_map'></div>
+    <div id='street'></div>
+</div>
+<p>写真：<%= image_tag @post.image_url, size: "250x200" if @post.image? %></p>
+<p>住所：<%= @post.address %></p>
+<p>URL：<%= Rinku.auto_link(@post.rink, :all, 'target="_blank"').html_safe %></p>
+<p>投稿者のコメント：<%= @post.content %></p>
+<p><%= link_to "編集する", edit_post_path(@post.id) %></p>
+<p><%= link_to "削除する", post_path(@post.id), method: :delete %></p>
+
+<script>
+    function initialize() {
+        var fenway = {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>};
+        var map = new google.maps.Map(document.getElementById('show_map'), {
+            center: fenway,
+            zoom: 11
+        });
+        var marker = new google.maps.Marker({
+            position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
+            map: map,
+        
+        });
+        var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('street'), {
+                position: fenway,
+                pov: {
+                    heading: 34,
+                    pitch: 10
+                }
+            });
+        map.setStreetView(panorama);
+
+    }
+        
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAPS_API_KEY'] %>&callback=initialize" async defer></script>

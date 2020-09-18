@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MapApp</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <%= link_to 'メインへ', posts_path %>
+      <%= link_to '新規投稿', new_post_path %>
+      <%= link_to "ログイン", new_user_session_path %>
+      <%= link_to "新規登録", new_user_registration_path %>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+      <%= link_to 'ユーザー一覧', users_path %>
+      <%= link_to 'マイページ', users_current_path %>
+    </header>
+    <%= yield %>
+  </body>
+</html>

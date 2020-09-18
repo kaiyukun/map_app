@@ -1,0 +1,18 @@
+<div class="post_form">
+    <%= form_with model:@post do |f| %>
+        <div class="form">
+            <%= f.label :"場所の名前" %>
+            <%= f.text_field :name %>
+        </div>
+        <div class="form">
+            <%= f.label :"住所または地名" %>
+            <%= f.text_field :address %>
+        </div>
+        <div class="form">
+            <%= f.label :"ここに関して一言！" %>
+            <%= f.text_area :content %>
+        </div>
+    
+        <%= f.submit "投稿する" %>
+    <% end %>
+</div>
