@@ -1,12 +1,28 @@
-<% @users.each do |u| %>
-    <div class="user_box">
-        <%= u.username %>
+<div class="users">
+    <div class="user_index">
+        <% @users.each do |u| %>
+            <% if current_user != u %>
+                <div class="user_index_info">
+                    <div class="user_box_image">
+                        <%= image_tag u.image_url, class:"user_index_image" if u.image? %>
+                    </div>
+                    <div class="user_box_else">
+                        <div class="user_box">
+                            <%= link_to u.username,user_path(u.id), class:"user_index_name" %>
+                        </div>
+                        <div class="user_box">
+                            <%= u.profile %>
+                        </div>
+                        <% if current_user != u %>
+                            <% if u.followed_by?(current_user) %>
+                                <p><%=button_to "フォローを外す", user_relationships_path(u.id), method: :delete, class:"user_index_follow" %></p>
+                            <% else %>
+                                <p><%=button_to "フォローする", user_relationships_path(u.id), method: :post, class:"user_index_follow" %></p>
+                            <% end %>
+                        <% end %>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
     </div>
-    <div class="user_box">
-        <%= image_tag u.image_url, size: "250x200" if u.image? %>
-    </div>
-    <div class="user_box">
-        <%= u.profile %>
-    </div>
-    <%= link_to '詳細へ', user_path(u.id) %>
-<% end %>
+</div>

@@ -1,15 +1,61 @@
-<p><%= @post.name %></p>
-<p>投稿者：<%= @post.user.username %></p>
-<div class="show_first">
-    <div id='show_map'></div>
-    <div id='street'></div>
+
+<div class="posts_show">
+    <p class="post_show_name"><%= @post.name %></p>
+
+    <% if user_signed_in? %>
+        <% if @post.liked_by?(current_user) %> <!-- ログインしているユーザーがファボしたかどうかで分岐 -->
+            <p><%=link_to post_likes_path(@post.id), method: :delete, class:"show_heart_delete" do %>
+                <i class="fas fa-heart"></i><% end %><span><%= @post.likes.count %></span>
+            </p>
+        <% else %>
+            <p><%=link_to post_likes_path(@post.id), method: :post, class:"show_heart_post" do %>
+                <i class="far fa-heart"></i><% end %><span><%= @post.likes.count %></span>
+            </p>
+        <% end %>
+    <% else %>
+        <p><i class="far fa-heart"></i><%= @post.likes.count %></p>
+    <% end %>
+
+    <div class="post_show_user_info">
+        <div>
+            <%= image_tag @post.user.image_url, class:"show_user_image" %>
+        </div>
+        <div>
+            <%= link_to @post.user.username, user_path(@post.user.id), class:"show_user_name" %>
+        </div>
+    </div>
+    <table>
+        <tr>
+            <th>写真</th>
+            <td><%= image_tag @post.image_url, size: "350x300" if @post.image? %>
+        </tr>
+        <tr>
+            <th>住所</th>
+            <td><%= @post.address %></td>
+        </tr>
+        <tr>
+            <th>URL</th>
+            <td><%= Rinku.auto_link(@post.rink, :all, 'target="_blank"').html_safe %></td>
+        </tr>
+        <tr>
+            <th>投稿者のコメント</th>
+            <td><%= @post.content %></td>
+        </tr>
+    </table>
+    <div class="show_first">
+        <div id='show_map'></div>
+        <div id='show_street'></div>
+    </div>
+    <div class="show_bottom">
+        <%= link_to edit_post_path(@post.id), class:"show_edit" do %>
+            <i class="fas fa-edit"></i>
+        <% end %>
+        <%= link_to post_path(@post.id), method: :delete, class:"show_delete" do %>
+            <i class="fas fa-trash-alt"></i>
+        <% end %>
+    </div>
+    
 </div>
-<p>写真：<%= image_tag @post.image_url, size: "250x200" if @post.image? %></p>
-<p>住所：<%= @post.address %></p>
-<p>URL：<%= Rinku.auto_link(@post.rink, :all, 'target="_blank"').html_safe %></p>
-<p>投稿者のコメント：<%= @post.content %></p>
-<p><%= link_to "編集する", edit_post_path(@post.id) %></p>
-<p><%= link_to "削除する", post_path(@post.id), method: :delete %></p>
 
 <script>
     function initialize() {
