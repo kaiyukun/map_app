@@ -3,23 +3,250 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 // index
+.posts_index{
+    padding: 100px 160px 0 160px;
+    display: flex;
+    justify-content: space-between;
+}
+.index_post{
+    width: 45%;
+    background-color: white;
+    border-radius: 5px;
 
-#map {
-    height: 100vh;
-    width: 100%;
+}
+.post_part{
+    margin: 15px 15px 50px 15px;
+}
+.post_user_info{
+    display: flex;
+    align-items: center;
+}
+.index_user_image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.index_user_name{
+    text-decoration: none;
+    color: rgb(60, 60, 60);
+}
+.index_user_name:hover{
+    text-decoration: underline;
+}
+.index_post_name{
+    text-decoration: none;
+    text-align: center;
+    font-size: 25px;
+    // font-weight: bold;
+    color: rgb(60, 60, 60);
+}
+.index_post_name:hover{
+    text-decoration: underline;
+}
+.post_image{
+    height: 300px;
+    width: 400px;
+    display: block;
+    margin: 0 auto;
+}
+
+.map_block{
+    // float:right;
+}
+.chihou_map{
+    margin-bottom: 30px;
+}
+.chihou_map p{
+    // transform: rotate(90deg);
+    color: white;
+    font-size: 50px;
+    text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+}
+#hokkaidou_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+    z-index: 0;
+}
+#touhoku_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+}
+#kanntou_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+}
+#chuubu_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+}
+#kannsai_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+}
+#shikochuu_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+}
+#kyuushuu_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
+}
+#okinawa_map {
+    height: 400px;
+    width: 500px;
+    border-radius: 5%;
 }
 
 // new
+.post_new{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.post_form{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+.post_form table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.post_form table th,table td{
+    padding: 10px 5px;
+    text-align: left;
+}
+.post_form table tr:nth-child(odd){
+    background-color: rgba(241, 230, 220, 0.661);
+}
+.post_form table th{
+    font-weight: normal;
+}
+.new_submit{
+    text-align: center;
+}
 
 // show
+.posts_show{
+    padding: 100px 160px 0 160px;
+}
+.post_show_name{
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(60, 60, 60);
+}
+.post_show_user_info{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+.show_user_image{
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+.show_user_name{
+    text-decoration: none;
+    color: rgb(60, 60, 60);
+}
+.show_user_name:hover{
+    text-decoration: underline;
+}
+.show_heart_delete{
+    font-size: 30px;
+    color: red;
+}
+.show_heart_post{
+    font-size: 30px;
+    color: red;
+}
 .show_first {
     display: flex;
+    margin: 100px 0 50px;
 }
-#street {
+#show_street {
     height: 500px;
     width: 700px;
+    border-radius: 0 5% 5% 0;
 }
 #show_map {
     height: 500px;
     width: 700px;
+    border-radius: 5% 0 0 5% ;
+}
+.posts_show table{
+    width: 100%;
+    border-collapse: collapse;
+}
+.posts_show table tr{
+    border-bottom: solid 2px white;
+}
+.posts_show table tr:last-child{
+    border-bottom: none;
+}
+.posts_show table th{
+    position: relative;
+    text-align: left;
+    width: 30%;
+    background-color: #93663890;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+.posts_show table th:after{
+    display: block;
+    content: "";
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    top:calc(50% - 10px);
+    right:-10px;
+    border-left: 10px solid  #93663890;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+}
+.posts_show table td{
+    text-align: left;
+    width: 70%;
+    text-align: center;
+    background-color: #eee;
+    padding: 10px 0;
+}
+.show_bottom{
+    width: 100%;
+    display: flex;
+    
+}
+.show_edit{
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 100px;
+    color: rgb(225, 225, 225);
+}
+.show_edit:hover{
+    color: rgb(183, 183, 183);
+}
+.show_delete{
+    display: inline-block;
+    margin: 0 auto;
+    font-size: 100px;
+    color: rgb(225, 225, 225);
+}
+.show_delete:hover{
+    color: rgb(183, 183, 183);
 }

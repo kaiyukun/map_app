@@ -7,4 +7,19 @@ class User < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   has_many :posts
+  has_many :likes
+  has_many :like_posts, through: :likes, source: :post
+
+  has_many :active_relationships, class_name: "Relationship", foreign_key: :following_id
+  has_many :followings, through: :active_relationships, source: :follower
+  
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: :follower_id
+  has_many :followers, through: :passive_relationships, source: :following
+
+  def followed_by?(user)
+    passive_relationships.find_by(following_id: user.id).present?
+  end
+
+  has_many :messages, dependent: :destroy
+  has_many :entries, dependent: :destroy
 end

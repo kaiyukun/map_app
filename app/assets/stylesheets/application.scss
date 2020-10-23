@@ -1,0 +1,74 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+ */
+$fa-font-path: '@fortawesome/fontawesome-free/webfonts';
+@import '@fortawesome/fontawesome-free/scss/fontawesome';
+@import '@fortawesome/fontawesome-free/scss/solid';
+@import '@fortawesome/fontawesome-free/scss/regular';
+@import '@fortawesome/fontawesome-free/scss/brands';
+@import '@fortawesome/fontawesome-free/scss/v4-shims';
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue",
+        Arial,
+        "Hiragino Kaku Gothic ProN",
+        "Hiragino Sans",
+        Meiryo,
+        sans-serif;
+    }
+
+header{
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    // left: 0;
+    background-color: white;
+    z-index: 10;
+    padding: 15px 0 5px;
+}
+header a{
+    color: rgb(60, 60, 60);
+    text-decoration: none;
+}
+.header_title{
+    margin-left: 160px; 
+    padding: 0;
+    font-size: 25px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.header_list{
+    margin-right: 160px;
+}
+.header_link{
+    margin: 0 0 0 15px;
+    font-size: 14px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.header_link:hover{
+    opacity: 0.7;
+}
+
+main{
+    background-color: #f9f8f5;
+}
