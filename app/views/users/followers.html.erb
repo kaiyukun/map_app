@@ -1,0 +1,14 @@
+<h2>フォロワー</h2>
+
+<% @users.each do |u| %>
+    <hr>
+    <p><%= image_tag u.image_url, size: "250x200" if u.image? %></p>
+    <p><span>名前: </span><%= link_to u.username, user_path(u.id) %></p>
+    <% if current_user != u %>
+        <% if u.followed_by?(current_user) %>
+            <p><%=button_to "フォローを外す", user_relationships_path(u.id), method: :delete %></p>
+        <% else %>
+            <p><%=button_to "フォローする", user_relationships_path(u.id), method: :post %></p>
+        <% end %>
+    <% end %>
+<% end %>

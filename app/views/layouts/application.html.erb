@@ -11,14 +11,19 @@
 
   <body>
     <header>
-      <%= link_to 'メインへ', posts_path %>
-      <%= link_to '新規投稿', new_post_path %>
-      <%= link_to "ログイン", new_user_session_path %>
-      <%= link_to "新規登録", new_user_registration_path %>
-      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-      <%= link_to 'ユーザー一覧', users_path %>
-      <%= link_to 'マイページ', users_current_path %>
+      <%= link_to "MAP APP", posts_path, class:"header_title" %>
+      <div class="header_list">
+        <%= link_to "HOME", posts_path, class:"header_link" %>
+        <%= link_to "NEW", new_post_path, class:"header_link" %>
+        <%= link_to "LOG IN", posts_path, class:"header_link" %>
+        <%= link_to "SIGN UP", users_current_path, class:"header_link" %>
+        <%= link_to 'LOG OUT', destroy_user_session_path, {method: :delete, class:"header_link"} %>
+        <%= link_to 'USER', users_path, class:"header_link" %>
+        <%= link_to 'MYPAGE', users_current_path, class:"header_link" %>
+      </div>
     </header>
-    <%= yield %>
+    <main>
+      <%= yield %>
+    </main>
   </body>
 </html>

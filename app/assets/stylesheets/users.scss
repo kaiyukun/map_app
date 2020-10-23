@@ -2,9 +2,174 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
-// show
+// login
+.login{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.login h2{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Times New Roman', Times, serif;
+}
+.login_form{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+.login_form table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.login_form table th,table td{
+    padding: 10px 5px;
+    text-align: left;
+}
+.login_form table tr:nth-child(odd){
+    background-color: rgba(241, 230, 220, 0.661);
+}
+.login_form table th{
+    font-weight: normal;
+}
+.login_form .field{
+    margin: 5px;
+}
+.actions{
+    text-align: center;
+    margin: 10px 0;
+}
 
+// signup
+.signup{
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+.signup h2{
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Times New Roman', Times, serif;
+}
+.signup_form{
+    border: solid black 1px;
+    border-radius: 5px;
+    padding: 15px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+}
+.signup_form table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+.signup_form table th,table td{
+    padding: 10px 5px;
+    text-align: left;
+}
+.signup_form table tr:nth-child(odd){
+    background-color: rgba(241, 230, 220, 0.661);
+}
+.signup_form table th{
+    font-weight: normal;
+}
+
+// index
+.users{
+    padding-top: 100px;
+}
+.user_index{
+    background-color: white;
+    width: 500px;
+    margin: 0 auto;
+}
+.user_index_info{
+    display: flex;
+    padding: 20px;
+    border-bottom: solid 5px #f9f8f5;
+}
+.user_index_image{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 50px;
+}
+.user_box_else{
+    width: 230px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.user_index_name{
+    text-decoration: none;
+    color: rgb(60, 60, 60);
+    font-size: 25px;
+}
+.user_index_name:hover{
+    text-decoration: underline;
+}
+.user_index_follow{
+    float: right;
+}
+// show
+.user_show{
+    padding: 100px;
+}
+.user_show_info{
+    background-color: white;
+    width: 60%;
+    margin: 0 auto 100px;
+    padding: 20px 40px;
+}
+.user_show_plofile{
+    display: flex;
+}
+.user_show_image{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    margin-right: 150px;
+}
+.user_show_name{
+    text-decoration: none;
+    color: rgb(60, 60, 60);
+    font-size: 30px;
+}
+.user_show_follow{
+    color: rgb(60, 60, 60);
+    text-decoration: none;
+}
+.user_show_follow:hover{
+    opacity: 0.7;
+}
 #user_map {
     height: 700px;
     width: 1000px;
+    margin-bottom: 70px;
+    border-radius: 10px;
+}
+.show_map_block{
+    margin: 0 auto ;
+    width: 1000px;
+}
+
+// current
+
+#like_map{
+    height: 700px;
+    width: 1000px;
+    border-radius: 10px;
 }
