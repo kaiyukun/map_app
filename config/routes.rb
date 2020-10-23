@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :posts do
     resource :likes, only: [:create, :destroy]
   end
-  root 'posts#home'
+  root 'posts#index'
 
   resources :users do
     resource :relationships, only: [:create, :destroy]

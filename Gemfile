@@ -62,3 +62,7 @@ gem 'cloudinary'
 gem 'dotenv-rails'
 
 gem 'rinku'
+
+group :production do
+  gem 'pg'
+end
