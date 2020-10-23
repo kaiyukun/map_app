@@ -53,6 +53,8 @@
 
 .map_block{
     // float:right;
+    overflow-y: scroll;
+    height: 100vh;
 }
 .chihou_map{
     margin-bottom: 30px;
@@ -177,17 +179,20 @@
 }
 .show_first {
     display: flex;
-    margin: 100px 0 50px;
+    margin: 100px auto;
+    width: 1406px;
 }
 #show_street {
     height: 500px;
     width: 700px;
-    border-radius: 0 5% 5% 0;
+    border-radius: 0 10px 10px 0;
+    border-left: solid 3px #f9f8f5;
 }
 #show_map {
     height: 500px;
     width: 700px;
-    border-radius: 5% 0 0 5% ;
+    border-radius: 10px 0 0 10px ;
+    border-right: solid 3px #f9f8f5;
 }
 .posts_show table{
     width: 100%;
