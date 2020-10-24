@@ -52,7 +52,7 @@
                 <%= link_to edit_post_path(@post.id), class:"show_edit" do %>
                     <i class="fas fa-edit"></i>
                 <% end %>
-                <%= link_to post_path(@post.id), method: :delete, class:"show_delete" do %>
+                <%= link_to post_path(@post.id), method: :delete, class:"show_delete", onClick:"postdelete()" do %>
                     <i class="fas fa-trash-alt"></i>
                 <% end %>
             <% end %>
@@ -83,6 +83,10 @@
         map.setStreetView(panorama);
 
     }
+
+    function postdelete() {
+                window.alert("本当に投稿を削除してもよろしいですか？");
+            }
         
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAPS_API_KEY'] %>&callback=initialize" async defer></script>
