@@ -45,14 +45,15 @@
     text-decoration: underline;
 }
 .post_image{
-    height: 300px;
-    width: 400px;
+    // height: 230px;
+    width: 100%;
     display: block;
     margin: 0 auto;
 }
 
 .map_block{
     // float:right;
+    width: 45%;
     overflow-y: scroll;
     height: 100vh;
 }
@@ -67,43 +68,43 @@
 }
 #hokkaidou_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
     z-index: 0;
 }
 #touhoku_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 #kanntou_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 #chuubu_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 #kannsai_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 #shikochuu_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 #kyuushuu_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 #okinawa_map {
     height: 400px;
-    width: 500px;
+    width: 100%;
     border-radius: 5%;
 }
 
