@@ -17,11 +17,18 @@
         <%= link_to "NEW", new_post_path, class:"header_link" %>
         <%= link_to "LOG IN", posts_path, class:"header_link" %>
         <%= link_to "SIGN UP", users_current_path, class:"header_link" %>
-        <%= link_to 'LOG OUT', destroy_user_session_path, {method: :delete, class:"header_link"} %>
+        <%= link_to 'LOG OUT', destroy_user_session_path, {method: :delete, class:"header_link", onClick:"alertlogout()"} %>
         <%= link_to 'USER', users_path, class:"header_link" %>
         <%= link_to 'MYPAGE', users_current_path, class:"header_link" %>
       </div>
     </header>
+
+    <script>
+      function alertlogout() {
+                window.alert("本当にログアウトしてもよろしいですか？");
+            }
+    </script>
+
     <main>
       <%= yield %>
     </main>

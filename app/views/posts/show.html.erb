@@ -46,14 +46,17 @@
         <div id='show_map'></div>
         <div id='show_street'></div>
     </div>
-    <div class="show_bottom">
-        <%= link_to edit_post_path(@post.id), class:"show_edit" do %>
-            <i class="fas fa-edit"></i>
-        <% end %>
-        <%= link_to post_path(@post.id), method: :delete, class:"show_delete" do %>
-            <i class="fas fa-trash-alt"></i>
-        <% end %>
-    </div>
+
+        <div class="show_bottom">
+            <% if current_user.id == @post.user.id %>      
+                <%= link_to edit_post_path(@post.id), class:"show_edit" do %>
+                    <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to post_path(@post.id), method: :delete, class:"show_delete" do %>
+                    <i class="fas fa-trash-alt"></i>
+                <% end %>
+            <% end %>
+        </div>
     
 </div>
 
