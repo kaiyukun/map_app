@@ -78,6 +78,8 @@
                     var marker = new google.maps.Marker({
                         position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
                         map: map,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>",
                     });
 
                     marker.addListener('click', function() {
@@ -91,6 +93,7 @@
                 (function(){
                     var contentName = "<%= t.name %></br>";
                     var contentUser = "投稿者：<%= t.user.username %></br>";
+
                     var infowindow = new google.maps.InfoWindow({
                         content: 
                             "<div id='infowindowclass'>" +
@@ -103,6 +106,8 @@
                     var marker = new google.maps.Marker({
                         position: {lat: <%= t.latitude %>, lng: <%= t.longitude %>},
                         map: map2,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>",
                     });
 
                     marker.addListener('click', function() {

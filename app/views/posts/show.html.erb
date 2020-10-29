@@ -70,6 +70,8 @@
         var marker = new google.maps.Marker({
             position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
             map: map,
+            animation: google.maps.Animation.DROP,
+            icon:  "<%= p.color %>",
         
         });
         var panorama = new google.maps.StreetViewPanorama(

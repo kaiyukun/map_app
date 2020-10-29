@@ -65,6 +65,8 @@
                     var marker = new google.maps.Marker({
                         position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
                         map: map,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>",
                     });
 
                     marker.addListener('click', function() {
@@ -90,6 +92,8 @@
                     var marker = new google.maps.Marker({
                         position: {lat: <%= t.latitude %>, lng: <%= t.longitude %>},
                         map: map2,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>",
                     });
 
                     marker.addListener('click', function() {
