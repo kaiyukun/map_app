@@ -71,7 +71,7 @@
             position: {lat: <%= @post.latitude %>, lng: <%= @post.longitude %>},
             map: map,
             animation: google.maps.Animation.DROP,
-            icon:  "<%= p.color %>",
+            icon:  "<%= @post.color %>",
         
         });
         var panorama = new google.maps.StreetViewPanorama(
