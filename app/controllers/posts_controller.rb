@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.sort {|a,b| b.liked_users.count <=> a.liked_users.count}
     @hokkaidou = Post.where(place: "北海道")
     @touhoku = Post.where(place: ["青森県","秋田県","山形県","岩手県","宮城県","福島県"])
     @kanntou = Post.where(place: ["東京都","神奈川県","千葉県","群馬県","栃木県","茨城県"])

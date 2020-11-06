@@ -3,6 +3,25 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 // index
+.index_contener{
+    width: 100%;
+    padding-top: 100px;
+}
+.marker_color{
+    width: 60%;
+    background-color: white;
+    margin: 0 auto 50px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+#all_map{
+    width: 80%;
+    height: 650px;
+    margin: 0 auto;
+    padding-top: 100px;
+    border-radius: 20px;
+}
 .posts_index{
     padding: 100px 17% 0 17%;
     display: flex;
@@ -12,7 +31,13 @@
     width: 45%;
     background-color: white;
     border-radius: 5px;
-
+    p{
+        color: white;
+        background-color: #f9f8f5;
+        font-size: 50px;
+        text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+        padding-left: 10px;
+    }
 }
 .post_part{
     margin: 15px 15px 50px 15px;
@@ -59,14 +84,14 @@
 }
 .chihou_map{
     margin-bottom: 30px;
+    p{
+        color: white;
+        font-size: 50px;
+        text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+        margin-left: 10px;
+    }
 }
-.chihou_map p{
-    // transform: rotate(90deg);
-    color: white;
-    font-size: 50px;
-    text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
-    margin-left: 10px;
-}
+
 #hokkaidou_map {
     height: 400px;
     width: 100%;

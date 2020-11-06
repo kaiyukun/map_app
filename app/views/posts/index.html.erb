@@ -1,60 +1,72 @@
-<div class="posts_index">
-    <div class="index_post">
-        <% @posts.each do |p| %>
-            <div class="post_part">
-                <div class="post_user_info">
-                    <div>
-                        <%= image_tag p.user.image_url, class:"index_user_image" %>
+<div class="index_contener">
+    <div class="marker_color">
+        <p><%= image_tag "https://maps.google.com/mapfiles/ms/micons/green-dot.png"%><span>建物・テーマパーク</span></p>
+        <p><%= image_tag "https://maps.google.com/mapfiles/ms/micons/ltblue-dot.png"%><span>絶景</span></p>
+        <p><%= image_tag "https://maps.google.com/mapfiles/ms/micons/yellow-dot.png"%> <span>飲食</span></p>
+        <p><%= image_tag "https://maps.google.com/mapfiles/ms/micons/pink-dot.png"%><span>デートスポット</span></p>
+        <p><%= image_tag "https://maps.google.com/mapfiles/ms/micons/purple-dot.png"%><span>心霊</span></p>
+    </div>
+    <div id="all_map"></div>
+
+    <div class="posts_index">
+        <div class="index_post">
+            <p>ランキング</p>
+            <% @posts.each do |p| %>
+                <div class="post_part">
+                    <div class="post_user_info">
+                        <div>
+                            <%= image_tag p.user.image_url, class:"index_user_image" %>
+                        </div>
+                        <div>
+                            <%= link_to p.user.username, user_path(p.user.id), class:"index_user_name" %>
+                        </div>
+                    </div>
+                    <div class="index_post_name">
+                        <%= link_to p.name, post_path(p.id),class:"index_post_name" %>
                     </div>
                     <div>
-                        <%= link_to p.user.username, user_path(p.user.id), class:"index_user_name" %>
+                        <%= image_tag p.image_url, class:"post_image" %>
                     </div>
                 </div>
-                <div class="index_post_name">
-                    <%= link_to p.name, post_path(p.id),class:"index_post_name" %>
-                </div>
-                <div>
-                    <%= image_tag p.image_url, class:"post_image" %>
-                </div>
+            <% end %>
+        </div>
+
+        <div class="map_block">
+            <div class="chihou_map">
+                <p>北海道</p>
+                <div id='hokkaidou_map'></div>
             </div>
-        <% end %>
-    </div>
+            <div class="chihou_map">
+                <p>東北地方</p>
+                <div id='touhoku_map'></div>
+            </div>
+            <div class="chihou_map">
+                <p>関東地方</p>
+                <div id='kanntou_map'></div>
+            </div>
+            <div class="chihou_map">
+                <p>中部地方</p>
+                <div id='chuubu_map'></div>
+            </div>
+            <div class="chihou_map">
+                <p>関西地方</p>
+                <div id='kannsai_map'></div>
+            </div>
+            <div class="chihou_map">
+                <p>四国・中国地方</p>
+                <div id='shikochuu_map'></div>
+            </div>
+            <div class="chihou_map">
+                <p>九州地方</p>
+                <div id='kyuushuu_map'></div>
+            </div>
+            <div class="chihou_map">
+                <p>沖縄県</p>
+                <div id='okinawa_map'></div>
+            </div>
+        </div>
 
-    <div class="map_block">
-        <div class="chihou_map">
-            <p>北海道</p>
-            <div id='hokkaidou_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>東北地方</p>
-            <div id='touhoku_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>関東地方</p>
-            <div id='kanntou_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>中部地方</p>
-            <div id='chuubu_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>関西地方</p>
-            <div id='kannsai_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>四国・中国地方</p>
-            <div id='shikochuu_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>九州地方</p>
-            <div id='kyuushuu_map'></div>
-        </div>
-        <div class="chihou_map">
-            <p>沖縄県</p>
-            <div id='okinawa_map'></div>
-        </div>
     </div>
-
 </div>
     <script>
     let map
@@ -70,6 +82,10 @@
         function initMap(){
             geocoder = new google.maps.Geocoder()
 
+            maps = new google.maps.Map(document.getElementById('all_map'), {
+                center: {lat: 34.965106, lng:136.624412},
+                zoom: 5,
+            });
             map = new google.maps.Map(document.getElementById('hokkaidou_map'), {
                 center: {lat: 43.343889, lng:142.381862},
                 zoom: 6,
@@ -103,6 +119,33 @@
                 zoom: 6,
             });
 
+            <% @posts.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>",
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
             <% @hokkaidou.each do |p| %>
                 (function(){
                     var contentName = "<%= p.name %></br>";
