@@ -9,10 +9,63 @@
     width: 100%;
 }
 .theme{
-    padding: 300px 20% 100px;
+    padding: 300px 20% 210px;
+}
+.theme_content{
+    position: relative;
+
+    p{
+        position: relative;
+        z-index: 100;
+    }
+    
+    .smartphone{
+        height: 450px;
+        width: 450px;
+        position: absolute;
+        top: -180%;
+        left: 55%;
+        z-index: 1;
+        border-radius: 30%;
+        opacity: 0.7;
+    }
 }
 .theme2_content{
     text-align: right;
+    position: relative;
+
+    p{
+        z-index: 100;
+        position: relative;
+    }
+    .girl{
+        height: 450px;
+        width: 450px;
+        position: absolute;
+        top: -100%;
+        left: -10%;
+        z-index: 0;
+        border-radius: 30%;
+        opacity: 0.7;
+    }
+}
+.theme3_content{
+    position: relative;
+    p{
+        z-index: 10;
+        position: relative;
+    }
+    
+    .useful{
+        height: 450px;
+        width: 450px;
+        position: absolute;
+        top: -100%;
+        left: 55%;
+        z-index: 0;
+        border-radius: 30%;
+        opacity: 0.7;
+    }
 }
 // index
 .index_contener{
