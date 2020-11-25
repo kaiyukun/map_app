@@ -17,6 +17,9 @@ class PostsController < ApplicationController
     @okinawa = Post.where(place: "沖縄県")
   end
 
+  def chihou
+  end
+
   def new
     @post = Post.new
   end

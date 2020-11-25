@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   resources :posts do
     resource :likes, only: [:create, :destroy]
   end
+  get 'posts/chihou' => 'posts#chihou'
   root 'posts#home'
 
   resources :users do

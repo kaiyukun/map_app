@@ -13,13 +13,16 @@
     <header>
       <%= link_to "MAP APP", posts_path, class:"header_title" %>
       <div class="header_list">
+      <% if user_signed_in? %>
         <%= link_to "HOME", posts_path, class:"header_link" %>
         <%= link_to "NEW", new_post_path, class:"header_link" %>
+        <%= link_to 'USERS', users_path, class:"header_link" %>
+        <%= link_to 'MYPAGE', users_current_path, class:"header_link" %>
+        <%= link_to 'LOG OUT', destroy_user_session_path, {method: :delete, class:"header_link", onClick:"alertlogout()"} %>
+      <% else %>
         <%= link_to "LOG IN", posts_path, class:"header_link" %>
         <%= link_to "SIGN UP", users_current_path, class:"header_link" %>
-        <%= link_to 'LOG OUT', destroy_user_session_path, {method: :delete, class:"header_link", onClick:"alertlogout()"} %>
-        <%= link_to 'USER', users_path, class:"header_link" %>
-        <%= link_to 'MYPAGE', users_current_path, class:"header_link" %>
+      <% end %>
       </div>
     </header>
 
