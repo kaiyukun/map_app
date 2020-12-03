@@ -9,11 +9,19 @@ Rails.application.routes.draw do
   get 'users/show'
   get 'users/current'
   devise_for :users
+  get 'posts/hokkaidou' => 'posts#hokkaidou'
+  get 'posts/touhoku' => 'posts#touhoku'
+  get 'posts/kanntou' => 'posts#kanntou'
+  get 'posts/chuubu' => 'posts#chuubu'
+  get 'posts/kannsai' => 'posts#kannsai'
+  get 'posts/shikochuu' => 'posts#shikochuu'
+  get 'posts/kyuushuu' => 'posts#kyuushuu'
+  get 'posts/okinawa' => 'posts#okinawa'
+  
+  root 'posts#home'
   resources :posts do
     resource :likes, only: [:create, :destroy]
   end
-  get 'posts/chihou' => 'posts#chihou'
-  root 'posts#home'
 
   resources :users do
     resource :relationships, only: [:create, :destroy]

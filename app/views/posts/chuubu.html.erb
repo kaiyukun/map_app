@@ -1,0 +1,48 @@
+<div class="index_contener">
+    <div class="chihou_map">
+        <div class="chihou_name" >中部地方</div>
+        <div id='chihou_map'></div>
+    </div>
+</div>
+
+<script>
+    let map
+    function initMap(){
+        geocoder = new google.maps.Geocoder()
+
+        map = new google.maps.Map(document.getElementById('chihou_map'), {
+            center: {lat: 35.726492, lng:137.935143},
+            zoom: 8,
+        });
+        <% @chuubu.each do |p| %>
+            (function(){
+                var contentName = "<%= p.name %></br>";
+                var contentUser = "投稿者：<%= p.user.username %></br>";
+                var infowindow = new google.maps.InfoWindow({
+                    content: 
+                        "<div id='infowindowclass'>" +
+                            contentName +
+                            contentUser +
+                            "お気に入り数：<%= p.likes.count %></br>" +
+                            "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                        "</div>"
+                });
+
+                var marker = new google.maps.Marker({
+                    position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                    map: map,
+                    animation: google.maps.Animation.DROP,
+                    icon:  "<%= p.color %>",
+                });
+
+                marker.addListener('click', function() {
+                    infowindow.open(map, marker);
+                });
+
+            })();
+        <% end %>
+    }
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAPS_API_KEY'] %>&callback=initMap" async defer></script>

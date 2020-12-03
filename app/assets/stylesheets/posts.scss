@@ -89,13 +89,6 @@
 }
 .posts_index{
     padding: 100px 17% 0 17%;
-    display: flex;
-    justify-content: space-between;
-}
-.index_post{
-    width: 45%;
-    background-color: white;
-    border-radius: 5px;
     p{
         color: white;
         background-color: #f9f8f5;
@@ -106,6 +99,11 @@
 }
 .post_part{
     margin: 15px 15px 50px 15px;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px gray;
+    position: relative;
 }
 .post_user_info{
     display: flex;
@@ -124,6 +122,12 @@
 .index_user_name:hover{
     text-decoration: underline;
 }
+.index_lank{
+    font-size: 2em;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
 .index_post_name{
     text-decoration: none;
     text-align: center;
@@ -136,67 +140,8 @@
 }
 .post_image{
     // height: 230px;
-    width: 100%;
+    width: 40%;
     display: block;
-    margin: 0 auto;
-}
-
-.map_block{
-    // float:right;
-    width: 45%;
-    overflow-y: scroll;
-    height: 100%;
-}
-.chihou_map{
-    margin-bottom: 30px;
-    p{
-        color: white;
-        font-size: 50px;
-        text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
-        margin-left: 10px;
-    }
-}
-
-#hokkaidou_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-    z-index: 0;
-}
-#touhoku_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-}
-#kanntou_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-}
-#chuubu_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-}
-#kannsai_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-}
-#shikochuu_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-}
-#kyuushuu_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
-}
-#okinawa_map {
-    height: 400px;
-    width: 100%;
-    border-radius: 5%;
 }
 
 // new
@@ -346,4 +291,20 @@
 }
 .show_delete:hover{
     color: rgb(183, 183, 183);
+}
+
+// chihou
+.chihou_name{
+    color: white;
+    background-color: #f9f8f5;
+    font-size: 50px;
+    text-shadow: 0 10px 10px rgba(0, 0, 0, .5);
+    text-align: center;
+}
+#chihou_map{
+    width: 70%;
+    height: 650px;
+    margin: 0 auto;
+    padding-top: 100px;
+    border-radius: 20px;
 }
