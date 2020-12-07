@@ -14,8 +14,11 @@
                     <th>
                         <%= f.label :"住所または地名" %>
                     <td>
-                        <%= f.text_field :address,size: "40x20" %>
+                        <%= f.text_field :address,size: "40x20", id:"pac-input" %>
+                        <input type="button" name="btn" value="クリック" onclick="codeAddress()"/>
+                        <div id="map"></div>
                     </td>
+                    
                 </tr>
                 <tr>
                     <th>
@@ -58,7 +61,7 @@
                     <%= f.label :"ここに関して一言！" %>
                     </th>
                     <td>
-                        <%= f.text_area :content ,size: "40x10"%>
+                        <%= f.text_area :content ,size: "40x7"%>
                     </td>
                 </tr>
             </table>
@@ -67,3 +70,38 @@
         <% end %>
     </div>
 </div>
+<script>
+    let geocoder
+    let map
+    function initMap() {
+        geocoder = new google.maps.Geocoder();
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: {lat:34.965106 , lng:136.624412},
+            zoom: 12
+        });
+        const input = document.getElementById("pac-input");
+        const autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo("bounds", map);
+    }
+        function codeAddress(){
+            let inputAddress = document.getElementById('pac-input').value;
+
+            geocoder.geocode( { 'address': inputAddress}, function(results, status) {
+                if (status == 'OK') {
+                    map.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+      // 下の1行を追加 
+                    display.textContent = "検索結果：" + results[ 0 ].geometry.location
+                } else {
+                    alert('該当する結果がありませんでした：' + status);
+                }
+            }); 
+        }
+</script><script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEg1CTlcqpZgBU8g5RZH5qjJBpLy6peIw&callback=initMap&libraries=places&v=weekly"
+    defer
+></script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

@@ -12,6 +12,7 @@
             <p>ランキング</p>
             <% @posts.each.with_index(1) do |p,i| %>
                 <div class="post_part">
+                    <%= link_to "",post_path(p.id), class:"post_link"%>
                     <div class="index_lank">第<%= i %>位</div>
                     <div class="post_user_info">
                         <div>
