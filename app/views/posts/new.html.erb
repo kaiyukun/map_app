@@ -1,6 +1,6 @@
 <div class="post_new">
     <div class="post_form">
-        <%= form_with model:@post do |f| %>
+        <%= form_for @post do |f| %>
             <table> 
                 <tr>
                     <th>
@@ -15,7 +15,7 @@
                         <%= f.label :"住所または地名" %>
                     <td>
                         <%= f.text_field :address,size: "40x20", id:"pac-input" %>
-                        <input type="button" name="btn" value="クリック" onclick="codeAddress()"/>
+                        <%= button_tag "クリック", onclick:"codeAddress()" %>
                         <div id="map"></div>
                     </td>
                     
@@ -74,7 +74,7 @@
     let geocoder
     let map
     function initMap() {
-        geocoder = new google.maps.Geocoder();
+        geocoder = new google.maps.Geocoder()
         map = new google.maps.Map(document.getElementById("map"), {
             center: {lat:34.965106 , lng:136.624412},
             zoom: 12
@@ -89,12 +89,10 @@
             geocoder.geocode( { 'address': inputAddress}, function(results, status) {
                 if (status == 'OK') {
                     map.setCenter(results[0].geometry.location);
-                    var marker = new google.maps.Marker({
+                    let marker = new google.maps.Marker({
                         map: map,
                         position: results[0].geometry.location
                     });
-      // 下の1行を追加 
-                    display.textContent = "検索結果：" + results[ 0 ].geometry.location
                 } else {
                     alert('該当する結果がありませんでした：' + status);
                 }
