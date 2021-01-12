@@ -9,39 +9,59 @@
     <div id="all_map"></div>
 
     <div class="posts_index">
-            <p>ランキング</p>
-            <% @posts.each.with_index(1) do |p,i| %>
-                <div class="post_part">
-                    <%= link_to "",post_path(p.id), class:"post_link"%>
-                    <div class="index_lank">第<%= i %>位</div>
-                    <div class="post_user_info">
-                        <div>
-                            <%= image_tag p.user.image_url, class:"index_user_image" %>
+            <div class="post_ranking">
+                <p>ランキング</p>
+                <% @posts.each.with_index(1) do |p,i| %>
+                    <div class="post_part">
+                        <%= link_to "",post_path(p.id), class:"post_link"%>
+                        <div class="index_lank">第<%= i %>位</div>
+                        <div class="post_user_info">
+                            <div>
+                                <%= image_tag p.user.image_url, class:"index_user_image" %>
+                            </div>
+                            <div>
+                                <%= link_to p.user.username, user_path(p.user.id), class:"index_user_name" %>
+                            </div>
+                        </div>
+                        <div class="index_post_name">
+                            <%= link_to p.name, post_path(p.id),class:"index_post_name" %>
                         </div>
                         <div>
-                            <%= link_to p.user.username, user_path(p.user.id), class:"index_user_name" %>
+                            <%= image_tag p.image_url, class:"post_image" %>
                         </div>
                     </div>
-                    <div class="index_post_name">
-                        <%= link_to p.name, post_path(p.id),class:"index_post_name" %>
-                    </div>
-                    <div>
-                        <%= image_tag p.image_url, class:"post_image" %>
-                    </div>
-                </div>
-            <% end %>
+                <% end %>
+            </div>
+        <div class="post_chihou">
+            <%= link_to "北海道へ",posts_hokkaidou_path %>
+            <div id="hokkaidou"></div>
+            <%= link_to "東北地方へ",posts_touhoku_path %>
+            <div id="touhoku"></div>
+            <%= link_to "関東地方へ",posts_kanntou_path %>
+            <div id="kanntou"></div>
+            <%= link_to "中部地方へ",posts_chuubu_path %>
+            <div id="chuubu"></div>
+            <%= link_to "関西地方へ",posts_kannsai_path %>
+            <div id="kannsai"></div>
+            <%= link_to "四国・中国地方へ",posts_shikochuu_path %>
+            <div id="shikochuu"></div>
+            <%= link_to "九州地方へ",posts_kyuushuu_path %>
+            <div id="kyuushuu"></div>
+            <%= link_to "沖縄へ",posts_okinawa_path %>
+            <div id="okinawa"></div>
+        </div>
     </div>
-        <%= link_to "北海道へ",posts_hokkaidou_path %>
-        <%= link_to "東北地方へ",posts_touhoku_path %>
-        <%= link_to "関東地方へ",posts_kanntou_path %>
-        <%= link_to "中部地方へ",posts_chuubu_path %>
-        <%= link_to "関西地方へ",posts_kannsai_path %>
-        <%= link_to "四国・中国地方へ",posts_shikochuu_path %>
-        <%= link_to "九州地方へ",posts_kyuushuu_path %>
-        <%= link_to "沖縄へ",posts_okinawa_path %>
 </div>
     <script>
     let maps
+    let map1
+    let map2
+    let map3
+    let map4
+    let map5
+    let map6
+    let map7
+    let map8
 
 
         function initMap(){
@@ -51,8 +71,256 @@
                 center: {lat: 34.965106, lng:136.624412},
                 zoom: 5
             });
+            map1 = new google.maps.Map(document.getElementById('hokkaidou'), {
+                center: {lat: 43.389926, lng:143.333327},
+                zoom: 7
+            });
+            map2 = new google.maps.Map(document.getElementById('touhoku'), {
+                center: {lat: 38.97997, lng:140.770376},
+                zoom: 7
+            });
+            map3 = new google.maps.Map(document.getElementById('kanntou'), {
+                center: {lat: 36.032601, lng:139.807837},
+                zoom: 7
+            });
+            map4 = new google.maps.Map(document.getElementById('chuubu'), {
+                center: {lat: 35.726492, lng:137.935143},
+                zoom: 7
+            });
+            map5 = new google.maps.Map(document.getElementById('kannsai'), {
+                center: {lat: 34.661161, lng:135.512821},
+                zoom: 7
+            });
+            map6 = new google.maps.Map(document.getElementById('shikochuu'), {
+                center: {lat: 34.237661, lng:133.051004},
+                zoom: 7
+            });
+            map7 = new google.maps.Map(document.getElementById('kyuushuu'), {
+                center: {lat: 32.680622, lng:130.708082},
+                zoom: 7
+            });
+            map8 = new google.maps.Map(document.getElementById('okinawa'), {
+                center: {lat: 26.092134, lng:127.662957},
+                zoom: 7
+            });
 
             <% @posts.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @hokkaidou.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @touhoku.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @kanntou.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @chuubu.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @kannsai.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @shikochuu.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @kyuushuu.each do |p| %>
+                (function(){
+                    var contentName = "<%= p.name %></br>";
+                    var contentUser = "投稿者：<%= p.user.username %></br>";
+                    var infowindow = new google.maps.InfoWindow({
+                        content: 
+                            "<div id='infowindowclass'>" +
+                                contentName +
+                                contentUser +
+                                "お気に入り数：<%= p.likes.count %></br>" +
+                                "<a href='/posts/<%= p.id %>'>詳細へ</a>" +
+                            "</div>"
+                    });
+
+                    var marker = new google.maps.Marker({
+                        position: {lat: <%= p.latitude %>, lng: <%= p.longitude %>},
+                        map: maps,
+                        animation: google.maps.Animation.DROP,
+                        icon:  "<%= p.color %>"
+                    });
+
+                    marker.addListener('click', function() {
+                        infowindow.open(maps, marker);
+                    });
+
+                })();
+            <% end %>
+            <% @okinawa.each do |p| %>
                 (function(){
                     var contentName = "<%= p.name %></br>";
                     var contentUser = "投稿者：<%= p.user.username %></br>";
