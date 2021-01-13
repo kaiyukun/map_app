@@ -145,10 +145,22 @@
         .index_post_name:hover{
             text-decoration: underline;
         }
-        .post_image{
-            height: 300px;
-            width: 60%;
-            display: block;
+        .part_main{
+            display: flex;
+            .post_image{
+                height: 300px;
+                width: 60%;
+                display: block;
+            }
+            .index_heart_post{
+                color: red;
+                font-size: 100px;
+                padding: 30px;
+            }
+            .index_like_count{
+                font-size: 100px;
+                padding-top: 30px;
+            }
         }
     }
     .post_part:hover{
