@@ -97,8 +97,5 @@
                 }
             }); 
         }
-</script><script
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBEg1CTlcqpZgBU8g5RZH5qjJBpLy6peIw&callback=initMap&libraries=places&v=weekly"
-    defer
-></script>
+</script><script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLEMAPS_API_KEY'] %>&callback=initMap&libraries=places&v=weekly"defer></script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>

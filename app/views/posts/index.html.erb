@@ -28,8 +28,10 @@
                         </div>
                         <div class="part_main">
                             <%= image_tag p.image_url, class:"post_image" %>
-                            <%=link_to post_likes_path(p.id), method: :post, class:"index_heart_post" do %>
-                            <i class="far fa-heart"></i><% end %><span class="index_like_count"><%= p.likes.count %></span>
+                            <div class="part_right">
+                                <%=link_to post_likes_path(p.id), method: :post, class:"index_heart_post" do %>
+                                <i class="far fa-heart"></i><% end %><span class="index_like_count"><%= p.likes.count %></span>
+                            </div>
                         </div>
                     </div>
                 <% end %>
